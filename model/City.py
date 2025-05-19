@@ -1,12 +1,12 @@
 from dataclasses import dataclass
+from model.Weather import Weather
 
 @dataclass
 class City:
     _name: str
     _population: int
     _country: str
-    _weather: str
-    _weather_details: str
+    _weather: Weather
 
     @property
     def name(self):
@@ -39,13 +39,4 @@ class City:
     @weather.setter
     def weather(self, value):
         self._weather = value
-
-    @property
-    def weather_details(self):
-        return self._weather_details
-    
-    @weather_details.setter
-    def weather_details(self, value):
-        self._weather_details = value
-
 
