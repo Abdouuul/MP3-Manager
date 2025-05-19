@@ -1,26 +1,18 @@
 
 erDiagram
-    %% USER ||--o{ ORDER : places
-    %% ORDER ||--|{ ORDER_ITEM : contains
-    %% PRODUCT ||--o{ ORDER_ITEM : includes
-    USER {
+    City ||--o{ User : cities
+    User ||--|{ City : users
+    
+    User {
         int id
         string name
         string email
         string password
-        string address
+        list cities
     }
-    ORDER {
-        string id
-        date orderDate
-        string status
-    }
-    PRODUCT {
-        string id
+    City {
+        int id
         string name
-        float price
-    }
-    ORDER_ITEM {
-        int quantity
-        float price
+        list users
+
     }
