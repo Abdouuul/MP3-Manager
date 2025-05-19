@@ -1,7 +1,8 @@
 
 erDiagram
-    City ||--o{ User : cities
-    User ||--|{ City : users
+    City }|--|{ User : cities
+    City ||--o{ Weather : weather
+    Weather |o--o| City : city
     
     User {
         int id
@@ -13,6 +14,13 @@ erDiagram
     City {
         int id
         string name
-        list users
+        Weather weather
 
+    }
+
+    Weather {
+        string weather_status
+        float temperature
+        string weather_details
+        City city
     }
