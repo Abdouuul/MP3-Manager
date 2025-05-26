@@ -1,8 +1,15 @@
+from __future__ import annotations
+from Model.City import City
+from Config.app_config import API_URL, API_KEY
+
 class Weather:
+    _weather_status: str
+    _temperature: float
+    _weather_details: str    
+    _city : City
     def __init__(self):
-        self._weather_status: str
-        self._temperature: float
-        self._weather_details: str    
+        self._api_url = API_URL + self._city.name + "&appid=" + API_KEY
+    
 
     @property
     def weather_status(self):
@@ -27,3 +34,13 @@ class Weather:
     @weather_details.setter
     def weather_details(self, details):
         self._weather_details = details
+
+    @property
+    def api(self):
+        return self._api_url
+    
+    @api.setter
+    def api(self, api):
+        self._api_url = api
+    
+

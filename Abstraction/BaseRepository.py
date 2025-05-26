@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
+from extensions import db
 
 class BaseRepository(ABC):
-    def __init(self):
-        self._repo : object = None
-        self._connection : bool = False
-        
+    session_manager = db.session        
+
 
     @abstractmethod
     def get_by_id():

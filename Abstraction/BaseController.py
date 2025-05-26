@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
+from flask import Blueprint
 
 class BaseController(ABC):
-    pass
-
+    controller_bp = Blueprint('controller_bp', __name__)

@@ -1,6 +1,7 @@
 import configparser
 import os
 import sys
+import pyodbc
 
 # Determine the absolute path to the project root directory
 # __file__ is the path to app_config.py.
@@ -30,14 +31,23 @@ def load_config():
 
     try:
         API_KEY = config['API']['API_KEY']
+        DATABASE_URL = config['API']['Database_URL']
+        API_URL = config['API']['API_URL']
+
     except KeyError:
-        raise ('Unable to get the API_Key from config file')
+        raise ('Unable to get the information from config file')
 
     if not API_KEY:
         raise ValueError('API_KEY has value ', API_KEY)
         sys.exit(1)
     
-    return API_KEY
+    return API_KEY, DATABASE_URL, API_URL
 
-API_KEY = load_config()
+#Get the API_KEY and DATABASE_URL from load_config
+API_KEY, DATABASE_URL, API_URL = load_config()
+
+
+class Config:
+    SQLALCHEMY_DATABASE_URI =(DATABASE_URL)
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
