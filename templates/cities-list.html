@@ -3,7 +3,24 @@
 {% block title %} <title>Cities</title> {% endblock %}
 
 {% block content %}
-    <h1>Cities</h1>
-    
+    <h1>Cities</h1> 
+    <!-- Display a list of the added Cities with the User it is linked to -->
+    {% if cities %}
+    <ul class="list-group">
+        {% for city in cities %}
+            <li class="list-group-item">
+                <div class="float-left">
+                    <i class="fas fa-user"></i>
+                    {{ city.user.firstname }} {{ city.user.lastname }}
+                </div>
+
+                <div class="float-right">
+                    <i class="fas fa-location-dot"></i>
+                    {{ city.name.upper() }}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     
 {% endblock %}
