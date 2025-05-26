@@ -2,41 +2,39 @@ from Abstraction.BaseRepository import BaseRepository as br
 from Model.City import City
 class CityRepository(br):
 
-    @staticmethod
-    def get_by_id(id):
+    def get_by_id(self, id):
         try:
-            user = CityRepository.session.query(City).get(id)
+            user = self.session_manager.query(City).get(id)
             return user
         except:
             print('City not found, or database not connected')
 
-    @staticmethod
-    def get_all():
+    def get_all(self):
         try:
-            cities = CityRepository.session.query(City).all()
+            cities = self.session_manager.query(City).all()
             return cities
-        except:
-          print('An exception occurred when getting all cities')
+        except Exception as e:
+          print('An exception occurred when getting all cities : ', e)
 
-    def add(city):
+    def add(self, city):
         try:
-          CityRepository.session.add(city)
-          CityRepository.session.commit()
+          self.session_manager.add(city)
+          self.session_manager.session.commit()
           print('User added successfully')
         except:
           print('An exception occurred when adding new city')
 
-    def update(city):
+    def update(self, city):
         try:
-            CityRepository.session.update(city)
-            CityRepository.session.commit()
+            self.session_manager.update(city)
+            self.session_manager.commit()
         except:
             print('An exception occurred when updating city')
 
-    def delete():
+    def delete(self):
         try:
-            CityRepository.session.delete()
-            CityRepository.session.commit()
+            self.session_manager.delete()
+            self.session_manager.commit()
             print('City deleted successfully')
         except:
             print('An exception occurred when deleting city')
